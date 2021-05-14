@@ -1,0 +1,19 @@
+name: Tests
+on:
+  push:
+    branches:
+      - master
+      - dev
+jobs:
+  open_window:
+    runs-on: ubuntu-20.04
+    container:
+      image: epitechcontent/epitest-docker
+    steps:
+    - uses: actions/checkout@master
+    - name: chmod file
+      run: chmod 777 build_csfml.sh
+    - name: install csfml
+      run: ./build_csfml.sh
+    - name: run make
+      run: make
